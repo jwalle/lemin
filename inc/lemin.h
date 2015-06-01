@@ -6,7 +6,7 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 14:43:58 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 18:00:12 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/01 20:12:15 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_tube
 
 typedef struct		s_env
 {
+	int				ant;
 	int				i;
 	int 			start;
 	int				end;

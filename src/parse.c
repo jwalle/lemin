@@ -6,7 +6,7 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 16:00:32 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 18:05:42 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/01 20:14:01 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int		get_start(t_env *e)
 
 	if ((ret = (get_next_line(0, &tmp)) > 0))
 	{
+		printf("start = %s\n", tmp);
 		if (is_room(tmp))
 		{
 			stock_room(tmp, e);
@@ -74,8 +75,6 @@ static int	start_end(char *line, t_env *e)
 
 int	parse(t_env *e, char *line, int ret)
 {
-	//char *temp;
-
 	printf("##== Parse ==#\n");
 	ret = 0;
 	if (line[0] == '#')
