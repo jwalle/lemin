@@ -6,7 +6,7 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 14:43:58 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 16:39:10 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/01 18:00:12 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,40 @@
 
 #include "../libft/libft.h"
 #include <stdlib.h>
+#include <stdio.h> // PRINTF
 
-typedef struct	s_env
+typedef struct		s_room
 {
-				int i;
-				int start;
-				int end;
-}				t_env;
+	int				end;
+	int				start;
+	int				number;
+	int				x;
+	int				y;
+	struct s_room	*next;
+}					t_room;
+
+typedef struct		s_tube
+{
+	int				out1;
+	int				out2;
+	struct s_tube	*next;
+}					t_tube;
+
+typedef struct		s_env
+{
+	int				i;
+	int 			start;
+	int				end;
+	t_room			*room;
+	t_tube			*tube;
+}					t_env;
 
 int		get_next_line(int fd, char **line);
 int		ft_putstr_error(char *s);
 int		parse(t_env *e, char *line, int ret);
+int		is_room(char *line);
+int		is_tube(char *line);
+int		stock_room(char *line, t_env *e);
+int		stock_tube(char *line, t_env *e);
 
 #endif

@@ -6,16 +6,17 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 16:00:32 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 16:41:35 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/01 18:05:42 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.c"
+#include "lemin.h"
 
 /* parse = 1 si tout va bien ou si commmentaire */
 static int		get_end(t_env *e)
 {
-	int ret;
+	int 	ret;
+	char	*tmp;
 
 	if ((ret = (get_next_line(0, &tmp)) > 0))
 	{
@@ -30,7 +31,8 @@ static int		get_end(t_env *e)
 
 static int		get_start(t_env *e)
 {
-	int ret;
+	int		ret;
+	char	*tmp;
 
 	if ((ret = (get_next_line(0, &tmp)) > 0))
 	{
@@ -45,6 +47,7 @@ static int		get_start(t_env *e)
 
 static int	start_end(char *line, t_env *e)
 {
+	printf("##== Start_end ==#\n");
 	if (ft_strcmp(line, "start"))
 	{
 		if (!e->start)
@@ -63,24 +66,26 @@ static int	start_end(char *line, t_env *e)
 			return (1);
 		}
 		else
-			return (ft_putstr_error("Error, multiple start.\n"));
+			return (ft_putstr_error("Error, multiple end.\n"));
 	}
 	else
-		return (ft_putstr("Error, bad comment.\n"));
+		return (ft_putstr_error("Error, bad comment.\n"));
 }
 
 int	parse(t_env *e, char *line, int ret)
 {
-	char *temp;
+	//char *temp;
 
+	printf("##== Parse ==#\n");
+	ret = 0;
 	if (line[0] == '#')
 	{
 		if (line[1] == '#')
-			return(start_end(&(line(line[2])), e));
+			return(start_end(&(line[2]), e));
 		else
-			return (1):
+			return (1);
 	}
-	else if (ft_isnum(line[0]))
+	else if (ft_isdigit(line[0]))
 	{
 		if (is_room(line))
 			return (stock_room(line, e));

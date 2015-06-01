@@ -4,6 +4,7 @@ SRC = src/lemin.c \
 	 src/get_next_line.c \
 	 src/parse.c \
 	 src/misc.c \
+	 src/stock.c \
 
 
 OBJ			=	$(SRC:.c=.o)
