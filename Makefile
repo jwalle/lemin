@@ -1,7 +1,9 @@
-NAME = lemin
+NAME = lem-in
 
 SRC = src/lemin.c \
-	 # get_next_line.c \
+	 src/get_next_line.c \
+	 src/parse.c \
+	 src/misc.c \
 
 
 OBJ			=	$(SRC:.c=.o)
