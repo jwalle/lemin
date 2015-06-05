@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbl.c                                        :+:      :+:    :+:   */
+/*   ft_lst_rec_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/21 12:35:13 by jwalle            #+#    #+#             */
-/*   Updated: 2015/05/21 15:46:41 by jwalle           ###   ########.fr       */
+/*   Created: 2015/06/05 18:33:50 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/05 18:51:43 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbl(int n)
+void	ft_lst_rec_free(t_list *first)
 {
-	ft_putnbr(n);
-	ft_putchar('\n');
+	if (first)
+	{
+		ft_lst_rec_free(first->next);
+		free(first);
+	}
 }

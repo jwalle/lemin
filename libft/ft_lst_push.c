@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_lst_push.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/21 14:38:20 by jwalle            #+#    #+#             */
-/*   Updated: 2015/05/21 15:46:20 by jwalle           ###   ########.fr       */
+/*   Created: 2015/06/05 18:29:22 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/05 18:51:27 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_tab(void ***tab)
+t_list		*ft_lst_push(t_list *first, void *item)
 {
-	int i;
+	t_list	*tmp;
 
-	i = 0;
-	while ((*tab)[i])
+	if (!item)
+		return (NULL);
+	if (!first)
 	{
-		ft_memdel((void **)&(*tab)[i]);
-		i++;
+		first = malloc(sizeof(t_list));
+		first->data = item;
+		first->next = NULL;
 	}
-	ft_memdel((void *)tab);
+	else
+	{
+		tmp = first;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = malloc(sizeof(t_list));
+		tmp->next->data = item;
+		tmp->next->next = NULL;
+	}
+	return (first);
 }

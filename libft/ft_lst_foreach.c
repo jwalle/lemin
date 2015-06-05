@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tab_len.c                                       :+:      :+:    :+:   */
+/*   ft_lst_foreach.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/21 12:22:37 by jwalle            #+#    #+#             */
-/*   Updated: 2015/05/21 15:47:27 by jwalle           ###   ########.fr       */
+/*   Created: 2015/06/05 18:27:10 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/05 18:50:59 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tab_len(char **tab)
+void	ft_lst_foreach(t_list *lst, void (*f)())
 {
-	int i;
+	t_list		*tmp;
 
-	i = 0;
-	while (*tab)
+	tmp = lst;
+	while (tmp)
 	{
-		++i;
-		++tab;
+		f(tmp->data);
+		tmp = tmp->next;
 	}
-	return (i);
 }
