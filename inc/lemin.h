@@ -15,7 +15,7 @@
 
 #include "../libft/libft.h"
 #include <stdlib.h>
-#include <stdio.h> // PRINTF
+#include <stdio.h> /* PRINTF */
 
 typedef struct		s_room
 {

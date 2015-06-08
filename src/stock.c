@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-//attention double espace, etc...
+/*attention double espace, etc...*/
 
 int		is_comment(char *line)
 {

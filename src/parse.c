@@ -13,6 +13,7 @@
 #include "lemin.h"
 
 /* parse = 1 si tout va bien ou si commmentaire */
+
 static int		get_end(t_env *e)
 {
 	int 	ret;
@@ -76,7 +77,7 @@ static int	start_end(char *line, t_env *e)
 int	parse(t_env *e, char *line, int ret)
 {
 	printf("##== Parse ==#\n");
-	ret = 0;
+	(void)ret;
 	if (line[0] == '#')
 	{
 		if (line[1] == '#')
