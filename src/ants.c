@@ -19,6 +19,7 @@ t_ant 	*stock_ant(t_env *e, int id)
 int init_ants(t_env *e)
 {
 	int i;
+	t_room *temp;
 
 	i = 1;
 	while (i <= e->ant_number)
@@ -26,6 +27,8 @@ int init_ants(t_env *e)
 		e->ants = ft_lst_push(e->ants, stock_ant(e, i));
 		i++;
 	}
+	temp = get_start_room(e);
+	temp->full = e->ant_number + 1;
 	return (1);
 }
 

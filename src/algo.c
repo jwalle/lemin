@@ -50,8 +50,6 @@ int check_way(t_room *current, char *previous, char *out)
 	return (0);
 }
 
-
-
 void find_way(t_env *e, t_room *current, char *previous, int i)
 {
 	t_list *list;
