@@ -28,7 +28,6 @@ int		is_room(char *line)
 
 	i = 0;
 	n = 0;
-	printf("is room = %s\n", line);
 	while (line[i] != '\0')
 	{
 		if (line[i] == ' ')
@@ -37,7 +36,6 @@ int		is_room(char *line)
 			return (0);
 		i++;
 	}
-	printf("room, n = %d\n", n);
 	if (n == 2)
 		return (1);
 	return (0);
@@ -58,7 +56,6 @@ int		is_tube(char *line)
 			return (0);
 		i++;
 	}
-	printf("tube, n = %d\n", n);
 	if (n == 1)
 		return (1);
 	return (0);
@@ -86,6 +83,7 @@ t_room 	*stock_room(char *line,t_env *e, int flag)
 		i++;
 	new->y = ft_atoi(line + i);
 	new->full = 0;
+	new->find = 0;
 	return (new);
 }
 

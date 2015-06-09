@@ -20,6 +20,7 @@
 # define START 1
 # define END 3
 # define NORMAL 2
+# define EVENODD(a) ((a) % 2 == 0 ? 1 : 0)
 
 typedef struct		s_room
 {
@@ -28,6 +29,7 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int 			full;
+	int 			find;
 }					t_room;
 
 typedef struct		s_tube
@@ -61,5 +63,9 @@ int		is_room(char *line);
 int		is_tube(char *line);
 t_room	*stock_room(char *line, t_env *e, int flag);
 t_tube	*stock_tube(char *line);
+void 	set_algo(t_env *e);
+void 	find_way(t_env *e, t_room *current, char *previous, int i);
+t_room  *get_room_by_name(t_env *e, char *name);
+t_room  *get_start_room(t_env *e);
 
 #endif

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
-#include <stdio.h>
+#include "../inc/lemin.h"
 
 void	ft_init(t_env *e)
 {
@@ -51,11 +50,9 @@ int		get_map(t_env *e)
 
 	if (!get_ant_number(e))
 		return (0);
-	printf("ANT NUM = %d\n", e->ant_number);
 	while ((ret = (get_next_line(0, &tmp)) > 0))
 	{
 		parse(e, tmp, ret);
-		printf("gnl = %d, %s\n",e->i , tmp);
 		free(tmp);
 	}
 	if (!ret)
@@ -98,5 +95,6 @@ int	main(int ac, char **av)
 	if (!get_map(e))
 		return (ft_putstr_error("Error, bad map.\n"));
 	print_stuff(e);
+	set_algo(e);
 	return (0);
 }

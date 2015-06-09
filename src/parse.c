@@ -38,7 +38,6 @@ static int		get_start(t_env *e)
 
 	if ((ret = (get_next_line(0, &tmp)) > 0))
 	{
-		printf("start = %s\n", tmp);
 		if (is_room(tmp))
 		{
 			/*stock_room(tmp, e);*/
@@ -51,7 +50,6 @@ static int		get_start(t_env *e)
 
 static int	start_end(char *line, t_env *e)
 {
-	printf("##== Start_end ==#\n");
 	if (!ft_strcmp(line, "start"))
 	{
 		if (!e->start)
@@ -80,7 +78,6 @@ static int	start_end(char *line, t_env *e)
 
 int	parse(t_env *e, char *line, int ret)
 {
-	printf("##== Parse ==#\n");
 	(void)ret;
 	if (line[0] == '#')
 	{
