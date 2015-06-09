@@ -23,7 +23,8 @@ static int		get_end(t_env *e)
 	{
 		if (is_room(tmp))
 		{
-			stock_room(tmp, e);
+			/*stock_room(tmp, e);*/
+			e->rooms = ft_lst_push(e->rooms ,stock_room(tmp, e, END));
 			return (1);
 		}
 	}
@@ -40,7 +41,8 @@ static int		get_start(t_env *e)
 		printf("start = %s\n", tmp);
 		if (is_room(tmp))
 		{
-			stock_room(tmp, e);
+			/*stock_room(tmp, e);*/
+			e->rooms = ft_lst_push(e->rooms ,stock_room(tmp, e, START));
 			return (1);
 		}
 	}
@@ -50,21 +52,23 @@ static int		get_start(t_env *e)
 static int	start_end(char *line, t_env *e)
 {
 	printf("##== Start_end ==#\n");
-	if (ft_strcmp(line, "start"))
+	if (!ft_strcmp(line, "start"))
 	{
 		if (!e->start)
 		{
 			get_start(e);
+			e->start = 1;
 			return (1);
 		}
 		else
 			return (ft_putstr_error("Error, multiple start.\n"));
 	}
-	else if (ft_strcmp(line, "end"))
+	else if (!ft_strcmp(line, "end"))
 	{
 		if (!e->end)
 		{
 			get_end(e);
+			e->end = 1;
 			return (1);
 		}
 		else
@@ -88,9 +92,9 @@ int	parse(t_env *e, char *line, int ret)
 	else if (ft_isdigit(line[0]))
 	{
 		if (is_room(line))
-			return (stock_room(line, e));
+			e->rooms = ft_lst_push(e->rooms ,stock_room(line, e, NORMAL));
 		else if (is_tube(line))
-			return (stock_tube(line, e));
+			e->tubes = ft_lst_push(e->tubes, stock_tube(line));
 		else
 			return (0);
 	}

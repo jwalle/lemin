@@ -64,14 +64,43 @@ int		is_tube(char *line)
 	return (0);
 }
 
-int		stock_room(char *line, t_env *e)
+t_room 	*stock_room(char *line,t_env *e, int flag)
 {
-	printf("stock room : %s, %d\n", line, e->start);
-	return (1);
+	t_room *new;
+	int i;
+
+	i = 0;
+	(void)e;
+	if (!(new = malloc(sizeof(t_room))))
+		return (NULL);
+	new->flag = flag;
+	while (line[i] != ' ')
+		i++;
+	new->name = ft_strsub(line, 0, i);
+	while (line[i] == ' ')
+		i++;
+	new->x = ft_atoi(line + i);
+	while (line[i] != ' ')
+		i++;
+	while (line[i] == ' ')
+		i++;
+	new->y = ft_atoi(line + i);
+	new->full = 0;
+	return (new);
 }
 
-int		stock_tube(char *line, t_env *e)
+t_tube	*stock_tube(char *line)
 {
-	printf("stock tube : %s, %d\n", line, e->start);
-	return (1);
+	t_tube *new;
+	int i;
+
+	i = 0;
+	if (!(new = malloc(sizeof(t_tube))))
+		return (NULL);
+	while (line[i] != '-')
+		i++;
+	new->out1 = ft_strsub(line, 0, i);
+	i++;
+	new->out2 = ft_strdup(line + i);
+	return (new);
 }
