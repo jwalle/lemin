@@ -41,7 +41,6 @@ typedef struct		s_tube
 typedef struct      s_ant
 {
 	int 			id;
-	int 			as_moved;
 	int 			flag;
 	t_room 			*room;
 	char 			*previous;
@@ -50,9 +49,8 @@ typedef struct      s_ant
 typedef struct		s_env
 {
 	int				ant_number;
-	int				i;
 	int 			start;
-	int				end;
+	int 			end;
 	t_list			*rooms;
 	t_list			*tubes;
 	t_list 			*ants;

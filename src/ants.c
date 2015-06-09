@@ -9,7 +9,6 @@ t_ant 	*stock_ant(t_env *e, int id)
 	if (!(new = malloc(sizeof(t_ant))))
 		return (NULL);
 	new->id = id;
-	new->as_moved = 0;
 	new->room = get_start_room(e);
 	new->previous = NULL;
 	new->flag = START;
