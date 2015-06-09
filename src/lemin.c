@@ -107,5 +107,6 @@ int	main(int ac, char **av)
 	print_stuff(e);
 	set_algo(e);
 	game_loop(e);
+	destroy_all(e);
 	return (0);
 }

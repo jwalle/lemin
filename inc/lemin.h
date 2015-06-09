@@ -75,5 +75,6 @@ int 	valid_path(t_env *e, t_room *current, char *previous, int i);
 int     check_way(t_room *current, char *previous, char *out);
 int 	is_visited(t_room *next);
 void 	reset_find_room(t_env *e);
+void 	destroy_all(t_env *e);
 
 #endif
