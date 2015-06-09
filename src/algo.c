@@ -41,10 +41,10 @@ int is_visited(t_room *next)
 	return (0);
 }
 
-int check_way(t_room *current, char *previous, char *out1)
+int check_way(t_room *current, char *previous, char *out)
 {
-	if (!ft_strcmp(current->name, out1)
-		&& ft_strcmp(previous, out1)
+	if (!ft_strcmp(current->name, out)
+		&& ft_strcmp(previous, out)
 		&& current->flag != END)
 		return (1);
 	return (0);

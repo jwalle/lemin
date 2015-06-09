@@ -44,7 +44,7 @@ typedef struct      s_ant
 	int 			as_moved;
 	int 			flag;
 	t_room 			*room;
-	t_room 			*previous;
+	char 			*previous;
 } 					t_ant;
 
 typedef struct		s_env
@@ -70,5 +70,8 @@ void 	find_way(t_env *e, t_room *current, char *previous, int i);
 t_room  *get_room_by_name(t_env *e, char *name);
 t_room  *get_start_room(t_env *e);
 int 	init_ants(t_env *e);
+int 	valid_path(t_env *e, t_room *current, char *previous, int i);
+int     check_way(t_room *current, char *previous, char *out);
+int 	is_visited(t_room *next);
 
 #endif
