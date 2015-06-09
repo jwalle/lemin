@@ -6,6 +6,7 @@ SRC = lemin.c \
 	 misc.c \
 	 stock.c \
 	 algo.c \
+	 ants.c \
 
 SRC_DIR = src
 

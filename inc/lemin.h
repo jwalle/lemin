@@ -42,6 +42,7 @@ typedef struct      s_ant
 {
 	int 			id;
 	int 			as_moved;
+	int 			flag;
 	t_room 			*room;
 	t_room 			*previous;
 } 					t_ant;
@@ -54,6 +55,7 @@ typedef struct		s_env
 	int				end;
 	t_list			*rooms;
 	t_list			*tubes;
+	t_list 			*ants;
 }					t_env;
 
 int		get_next_line(int fd, char **line);
@@ -67,5 +69,6 @@ void 	set_algo(t_env *e);
 void 	find_way(t_env *e, t_room *current, char *previous, int i);
 t_room  *get_room_by_name(t_env *e, char *name);
 t_room  *get_start_room(t_env *e);
+int 	init_ants(t_env *e);
 
 #endif

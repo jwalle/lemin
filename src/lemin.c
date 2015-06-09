@@ -16,6 +16,7 @@ void	ft_init(t_env *e)
 {
 	e->rooms = NULL;
 	e->tubes = NULL;
+	e->ants = NULL;
 	e->i = 0;
 	e->ant_number = 0;
 	e->start = 0;
@@ -65,6 +66,7 @@ void print_stuff(t_env *e)
 	t_list 	*list;
 	t_room  *temp;
 	t_tube  *tump;
+	t_ant 	*tant;
 
 	list = e->rooms;
 	while (list)
@@ -78,6 +80,13 @@ void print_stuff(t_env *e)
 	{
 		tump = (t_tube*)list->data;
 		printf("out1 = %s, out2 = %s\n", tump->out1, tump->out2);
+		list = list->next;
+	}
+	list = e->ants;
+	while(list)
+	{
+		tant = (t_ant*)list->data;
+		printf("ant id = %d, room = %s\n", tant->id, tant->room->name);
 		list = list->next;
 	}
 }
@@ -94,6 +103,7 @@ int	main(int ac, char **av)
 	ft_init(e);
 	if (!get_map(e))
 		return (ft_putstr_error("Error, bad map.\n"));
+	init_ants(e);
 	print_stuff(e);
 	set_algo(e);
 	return (0);
