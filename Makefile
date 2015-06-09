@@ -7,6 +7,7 @@ SRC = lemin.c \
 	 stock.c \
 	 algo.c \
 	 ants.c \
+	 game.c \
 
 SRC_DIR = src
 
@@ -31,7 +32,7 @@ all			:	$(NAME)
 
 $(NAME)		:	$(OBJ)
 	@make -C ./libft
-	@$(CC) $(FLAGS) $(SRCS) $(LINK) $(INC) -o $(NAME)
+	$(CC) $(FLAGS) $(SRCS) $(LINK) $(INC) -o $(NAME)
 
 $(OBJ):$(SRCS)
 	$(CC) -c $(CFLAGS) $(INC) $(LINK) $< -o $@

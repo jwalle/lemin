@@ -85,4 +85,5 @@ void find_way(t_env *e, t_room *current, char *previous, int i)
 void  set_algo(t_env *e)
 {
 	find_way(e, get_start_room(e), NULL, 0);
+	reset_find_room(e);
 }

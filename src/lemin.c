@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lemin.h"
+#include "lemin.h"
 
 void	ft_init(t_env *e)
 {
@@ -106,5 +106,6 @@ int	main(int ac, char **av)
 	init_ants(e);
 	print_stuff(e);
 	set_algo(e);
+	game_loop(e);
 	return (0);
 }

@@ -58,6 +58,7 @@ typedef struct		s_env
 	t_list 			*ants;
 }					t_env;
 
+int 	game_loop(t_env *e);
 int		get_next_line(int fd, char **line);
 int		ft_putstr_error(char *s);
 int		parse(t_env *e, char *line, int ret);
@@ -73,5 +74,6 @@ int 	init_ants(t_env *e);
 int 	valid_path(t_env *e, t_room *current, char *previous, int i);
 int     check_way(t_room *current, char *previous, char *out);
 int 	is_visited(t_room *next);
+void 	reset_find_room(t_env *e);
 
 #endif
