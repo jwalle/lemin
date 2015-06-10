@@ -33,10 +33,10 @@ all			:	$(NAME)
 
 $(NAME)		:	$(OBJ)
 	@make -C ./libft
-	$(CC) $(FLAGS) $(SRCS) $(LINK) $(INC) -o $(NAME)
+	$(CC) $(FLAGS) $(SRCS) $(INC) -o $(NAME) $(LINK)
 
 $(OBJ):$(SRCS)
-	$(CC) -c $(CFLAGS) $(INC) $(LINK) $< -o $@
+	$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
 clean		:
 	@make -C ./libft clean
