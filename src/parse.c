@@ -23,7 +23,6 @@ static int		get_end(t_env *e)
 	{
 		if (is_room(tmp))
 		{
-			/*stock_room(tmp, e);*/
 			e->rooms = ft_lst_push(e->rooms ,stock_room(tmp, e, END));
 			return (1);
 		}
@@ -40,7 +39,6 @@ static int		get_start(t_env *e)
 	{
 		if (is_room(tmp))
 		{
-			/*stock_room(tmp, e);*/
 			e->rooms = ft_lst_push(e->rooms ,stock_room(tmp, e, START));
 			return (1);
 		}
@@ -86,7 +84,7 @@ int	parse(t_env *e, char *line, int ret)
 		else
 			return (1);
 	}
-	else if (ft_isdigit(line[0]))
+	else if (ft_isalnum(line[0]))
 	{
 		if (is_room(line))
 			e->rooms = ft_lst_push(e->rooms ,stock_room(line, e, NORMAL));

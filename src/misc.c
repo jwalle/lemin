@@ -14,6 +14,7 @@
 int			ft_putstr_error(char *s)
 {
 	ft_putstr(s);
+	exit(0);
 	return (0);
 }
 

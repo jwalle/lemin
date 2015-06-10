@@ -56,9 +56,8 @@ void find_way(t_env *e, t_room *current, char *previous, int i)
 	t_tube *way;
 	
 	list = e->tubes;
-	printf("way = %s\n", current->name);
 	current->find++;
-	while (list && current->flag != END && i < 10000)
+	while (list && current->flag != END && i < 1000000)
 	{
 		i++;
 		way = (t_tube*)list->data;
@@ -76,12 +75,12 @@ void find_way(t_env *e, t_room *current, char *previous, int i)
 		}
 		list = list->next;
 	}
-	if (current->flag != END)
+/*	if (current->flag != END)
 	{
 		ft_putstr_error("Map impossible.\n");
 		destroy_all(e);
 		exit(1);
-	}
+	}*/
 }
 
 void  set_algo(t_env *e)

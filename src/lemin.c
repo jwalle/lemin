@@ -60,34 +60,45 @@ int		get_map(t_env *e)
 	return (0);
 }
 
+void print_room_name(char *name, int x, int y, int flag)
+{
+	if (flag == START)
+		ft_putstr("##start\n");
+	if (flag == END)
+		ft_putstr("##end\n");
+	ft_putstr(name);
+	ft_putchar(' ');
+	ft_putnbr(x);
+	ft_putchar(' ');
+	ft_putnbr(y);
+	ft_putchar('\n');
+}
+
 void print_stuff(t_env *e)
 {
 	t_list 	*list;
 	t_room  *temp;
 	t_tube  *tump;
-	t_ant 	*tant;
 
 	list = e->rooms;
+	ft_putnbr(e->ant_number);
+	ft_putchar('\n');
 	while (list)
 	{
 		temp = (t_room*)list->data;
-		printf("name = %s | x = %d | y = %d | flag = %d\n", temp->name, temp->x, temp->y, temp->flag);
+		print_room_name(temp->name, temp->x, temp->y, temp->flag);
 		list = list->next;
 	}
 	list = e->tubes;
 	while (list)
 	{
 		tump = (t_tube*)list->data;
-		printf("out1 = %s, out2 = %s\n", tump->out1, tump->out2);
+		ft_putstr(tump->out1);
+		ft_putchar('-');
+		ft_putendl(tump->out2);
 		list = list->next;
 	}
-	list = e->ants;
-	while(list)
-	{
-		tant = (t_ant*)list->data;
-		printf("ant id = %d, room = %s\n", tant->id, tant->room->name);
-		list = list->next;
-	}
+	ft_putchar('\n');
 }
 
 

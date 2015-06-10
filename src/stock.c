@@ -32,7 +32,7 @@ int		is_room(char *line)
 	{
 		if (line[i] == ' ')
 			n++;
-		else if (!ft_isdigit(line[i]))
+		else if (!ft_isalnum(line[i]))
 			return (0);
 		i++;
 	}
@@ -52,7 +52,7 @@ int		is_tube(char *line)
 	{
 		if (line[i] == '-')
 			n++;
-		else if (!ft_isdigit(line[i]))
+		else if (!ft_isalnum(line[i]))
 			return (0);
 		i++;
 	}

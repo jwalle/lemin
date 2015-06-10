@@ -27,7 +27,7 @@ int can_enter(char *name, t_env *e)
 	temp = get_room_by_name(e, name);
 	if (temp->flag == END)
 		return (1);
-	if (temp->full)
+	else if (temp->full)
 		return (0);
 	return (1);
 }
@@ -88,7 +88,9 @@ int game_loop(t_env *e)
 {
 	t_list *list;
 	t_ant 	*temp;
+	int i;
 
+	i = 0;
 	while(game_over(e))
 	{
 		list = e->ants;
@@ -98,9 +100,13 @@ int game_loop(t_env *e)
 			move(temp, e);
 			list = list->next;
 		}
+		i++;
 		ft_putchar('\n');
 		/* re_init_turn(e);*/
 	}
+	ft_putstr("TURN = ");
+	ft_putnbr(i);
+	ft_putchar('\n');
 	return (1);
 }
 
