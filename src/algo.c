@@ -75,12 +75,12 @@ void find_way(t_env *e, t_room *current, char *previous, int i)
 		}
 		list = list->next;
 	}
-/*	if (current->flag != END)
+	if (current->flag != END)
 	{
 		ft_putstr_error("Map impossible.\n");
 		destroy_all(e);
 		exit(1);
-	}*/
+	}
 }
 
 void  set_algo(t_env *e)
