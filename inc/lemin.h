@@ -39,11 +39,17 @@ typedef struct		s_tube
 	int				visited;
 }					t_tube;
 
+typedef struct		s_path
+{
+	char			*name;
+}					t_path;
+
 typedef struct      s_ant
 {
 	int 			id;
 	int 			flag;
 	t_room 			*room;
+	t_path			*path;
 	char 			*previous;
 } 					t_ant;
 

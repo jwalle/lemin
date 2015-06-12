@@ -19,8 +19,10 @@ int init_ants(t_env *e)
 {
 	int i;
 	t_room *temp;
+	t_path	*paths;
 
 	i = 1;
+	paths = NULL;
 	while (i <= e->ant_number)
 	{
 		e->ants = ft_lst_push(e->ants, stock_ant(e, i));

@@ -84,7 +84,6 @@ int find_way(t_env *e, t_room *current, char *previous, int i)
 		list = list->next;
 	}
 	room->find = 0;
-	printf("%d\n", min);
 	if (min == INT_MAX)
 		return (-1);
 	else
@@ -97,7 +96,7 @@ void  set_algo(t_env *e)
 
 	reset_find_room(e);
 	x = find_way(e, get_start_room(e), NULL, 0);
-	printf("x = %d\n", x);
+	//printf("x = %d\n", x);
 	if (x < 0 || x == INT_MAX)
 	{
 		ft_putstr_error("Map impossible.\n");

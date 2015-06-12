@@ -36,42 +36,58 @@ char *find_way_ant(t_env *e, t_ant *ant)
 {
 	t_list *list;
 	t_tube *way;
-	t_room *next;
+	char *next;
+	char *next_ret;
+	int min;
+	int last;
 
+	min = INT_MAX;
 	list = e->tubes;
-	while (list)
+	next = NULL;
+	next_ret = NULL;
+	while (list && min != 1)
 	{
 		way = (t_tube*)list->data;
-		next = NULL;
-		if (!ft_strcmp(ant->room->name, way->out1)
-			&& ft_strcmp(ant->previous, way->out1)
-			&& ft_strcmp(ant->previous, way->out2)
-			&& can_enter(way->out2, e)
-			&& ant->flag != END
-			//&& !valid_path(e, get_room_by_name(e, way->out1), ant->previous, 0))
-			&& ((next = find_next(get_room_by_name(e, way->out2), e))))
-			return (way->out2);
-		if (!ft_strcmp(ant->room->name, way->out2)
-			&& ft_strcmp(ant->previous, way->out2)
-			&& ft_strcmp(ant->previous, way->out1)
-			&& can_enter(way->out1, e)
-			&& ant->flag != END
-			//&& !valid_path(e, get_room_by_name(e, way->out2), ant->previous, 0))
-			&& ((next = find_next(get_room_by_name(e, way->out1), e))))
-			return (way->out1);
-		list = list->next;
+		if (!way->visited)
+		{
+			next = cmp_tube_room(ant->room->name, way);
+			if (next && can_enter(next, e) && ft_strcmp(next, ant->previous))
+			{
+				if ((last = (find_way(e, get_room_by_name(e, next), ant->room->name, 0))) < min
+					&& last > -1)
+				{
+					way->visited = 1;
+					min = 1 + last;
+					next_ret = next;
+					//printf("Way ant = %d\n", min);
+				}
+			}			
+		}	
+		list = list->next;	
 	}
-	return (NULL);
+	reset_visit_tube(e);
+	return (next_ret);
 }
 
+t_path	*fill_path(char *name);
+{
+	t_path	*new;
+
+	if (!new = malloc(sizeof(t_path))))
+		return (NULL);
+		new->path = ft_strdup(name);
+	return (new);
+}
 
 int move(t_ant *ant, t_env *e)
 {
-	char *new_room;
-	t_room *temp;
+	char	*new_room;
+	t_room	*temp;
 
+ 	new_room = NULL;
 	if ((new_room = find_way_ant(e, ant)) != NULL)
 	{
+		ant->path = ft_lst_push(ant->path, fill_path);
 		ant->room->full--;
 		ant->previous = ant->room->name;
 		temp = get_room_by_name(e, new_room);
@@ -101,12 +117,12 @@ int game_loop(t_env *e)
 		while (list)
 		{
 			temp = (t_ant*)list->data;
-			move(temp, e);
+			if (temp->flag != END)
+				move(temp, e);
 			list = list->next;
 		}
 		i++;
 		ft_putchar('\n');
-		/* re_init_turn(e);*/
 	}
 	ft_putstr("TURN = ");
 	ft_putnbr(i);
