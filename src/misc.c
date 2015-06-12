@@ -32,6 +32,20 @@ void reset_find_room(t_env *e)
 	}
 }
 
+void reset_visit_tube(t_env *e)
+{
+	t_list *list;
+	t_tube *temp;
+
+	list = e->tubes;
+	while (list)
+	{
+		temp = (t_tube*)list->data;
+		temp->visited = 0;
+		list = list->next;
+	}
+}
+
 
 
 /* A TESTER */ 

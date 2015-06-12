@@ -100,5 +100,6 @@ t_tube	*stock_tube(char *line)
 	new->out1 = ft_strsub(line, 0, i);
 	i++;
 	new->out2 = ft_strdup(line + i);
+	new->visited = 0;
 	return (new);
 }

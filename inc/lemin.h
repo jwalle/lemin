@@ -20,7 +20,7 @@
 # define START 1
 # define END 3
 # define NORMAL 2
-# define EVENODD(a) ((a) % 2 == 0 ? 1 : 0)
+# define INT_MAX 2147483647
 
 typedef struct		s_room
 {
@@ -36,6 +36,7 @@ typedef struct		s_tube
 {
 	char			*out1;
 	char			*out2;
+	int				visited;
 }					t_tube;
 
 typedef struct      s_ant
@@ -65,7 +66,7 @@ int		is_tube(char *line);
 t_room	*stock_room(char *line, t_env *e, int flag);
 t_tube	*stock_tube(char *line);
 void 	set_algo(t_env *e);
-void 	find_way(t_env *e, t_room *current, char *previous, int i);
+int 	find_way(t_env *e, t_room *current, char *previous, int i);
 t_room  *get_room_by_name(t_env *e, char *name);
 t_room  *get_start_room(t_env *e);
 int 	init_ants(t_env *e);
@@ -74,5 +75,10 @@ int     check_way(t_room *current, char *previous, char *out);
 int 	is_visited(t_room *next);
 void 	reset_find_room(t_env *e);
 void 	destroy_all(t_env *e);
+t_room	*find_next(t_room *current, t_env *e);
+int 	search(t_room *next, t_env *e, char *previous);
+char	*cmp_tube_room(char	*room, t_tube *way);
+void	reset_visit_tube(t_env *e);
+
 
 #endif

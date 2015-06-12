@@ -9,6 +9,7 @@ SRC = lemin.c \
 	 ants.c \
 	 game.c \
 	 destroy.c \
+	 search.c \
 
 SRC_DIR = src
 

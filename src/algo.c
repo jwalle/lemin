@@ -50,41 +50,60 @@ int check_way(t_room *current, char *previous, char *out)
 	return (0);
 }
 
-void find_way(t_env *e, t_room *current, char *previous, int i)
+int find_way(t_env *e, t_room *current, char *previous, int i)
 {
-	t_list *list;
-	t_tube *way;
-	
+	t_list	*list;
+	t_tube	*way;
+	t_room	*room;
+	char	*next;
+	int		min;
+	int		last;
+
+	room = current;
+	next = NULL;
 	list = e->tubes;
-	current->find++;
-	while (list && current->flag != END && i < 1000000)
+	if (room->flag == END)
+		return (0);
+	if (is_visited(room))
+		return (-1);
+	room->find = 1;
+	min = INT_MAX;
+	while (list)
 	{
-		i++;
 		way = (t_tube*)list->data;
-		if (!is_visited(get_room_by_name(e, way->out2))
-			&& check_way(current, previous, way->out1))
+		if (!way->visited)
 		{
-				find_way(e, get_room_by_name(e, way->out2), current->name, i);
-				return ;
-		}
-		if (!is_visited(get_room_by_name(e, way->out1))
-			&& check_way(current, previous, way->out2))
-		{
-			 find_way(e, get_room_by_name(e, way->out1), current->name, i);
-			 return ;
+			next = cmp_tube_room(room->name, way);
+			if (next && ft_strcmp(next, previous) && !is_visited(get_room_by_name(e, next)))
+			{
+				way->visited = 1;
+				if ((last = (find_way(e, get_room_by_name(e, next), room->name, i))) < min && last != -1)
+					min = 1 + last;
+			}
 		}
 		list = list->next;
 	}
-	if (current->flag != END)
+	room->find = 0;
+	printf("%d\n", min);
+	if (min == INT_MAX)
+		return (-1);
+	else
+		return (min);
+}
+
+void  set_algo(t_env *e)
+{
+	int x;
+
+	reset_find_room(e);
+	x = find_way(e, get_start_room(e), NULL, 0);
+	printf("x = %d\n", x);
+	if (x < 0 || x == INT_MAX)
 	{
 		ft_putstr_error("Map impossible.\n");
 		destroy_all(e);
 		exit(1);
 	}
-}
-
-void  set_algo(t_env *e)
-{
-	find_way(e, get_start_room(e), NULL, 0);
 	reset_find_room(e);
+	reset_visit_tube(e);
 }

@@ -36,24 +36,28 @@ char *find_way_ant(t_env *e, t_ant *ant)
 {
 	t_list *list;
 	t_tube *way;
+	t_room *next;
 
 	list = e->tubes;
 	while (list)
 	{
 		way = (t_tube*)list->data;
+		next = NULL;
 		if (!ft_strcmp(ant->room->name, way->out1)
 			&& ft_strcmp(ant->previous, way->out1)
 			&& ft_strcmp(ant->previous, way->out2)
 			&& can_enter(way->out2, e)
 			&& ant->flag != END
-			&& !valid_path(e, get_room_by_name(e, way->out1), ant->previous, 0))
+			//&& !valid_path(e, get_room_by_name(e, way->out1), ant->previous, 0))
+			&& ((next = find_next(get_room_by_name(e, way->out2), e))))
 			return (way->out2);
 		if (!ft_strcmp(ant->room->name, way->out2)
 			&& ft_strcmp(ant->previous, way->out2)
 			&& ft_strcmp(ant->previous, way->out1)
 			&& can_enter(way->out1, e)
 			&& ant->flag != END
-			&& !valid_path(e, get_room_by_name(e, way->out2), ant->previous, 0))
+			//&& !valid_path(e, get_room_by_name(e, way->out2), ant->previous, 0))
+			&& ((next = find_next(get_room_by_name(e, way->out1), e))))
 			return (way->out1);
 		list = list->next;
 	}
