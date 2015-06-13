@@ -12,16 +12,6 @@
 
 #include "lemin.h"
 
-void	ft_init(t_env *e)
-{
-	e->rooms = NULL;
-	e->tubes = NULL;
-	e->ants = NULL;
-	e->start = 0;
-	e->end = 0;
-	e->ant_number = 0;
-}
-
 int 	get_ant_number(t_env *e)
 {
 	int ret;

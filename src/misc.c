@@ -46,38 +46,19 @@ void reset_visit_tube(t_env *e)
 	}
 }
 
-
-
-/* A TESTER */ 
-
-int valid_path(t_env *e, t_room *current, char *previous, int i)
+void	ft_init(t_env *e)
 {
-	t_list *list;
-	t_tube *way;
-	
-	list = e->tubes;
-	current->find++;
-	while (list && current->flag != END && i < 10000)
-	{
-		i++;
-		way = (t_tube*)list->data;
-		if (!is_visited(get_room_by_name(e, way->out2))
-			&& check_way(current, previous, way->out1))
-		{
-			valid_path(e, get_room_by_name(e, way->out2), current->name, i);
-			return (0);
-		}
-		if (!is_visited(get_room_by_name(e, way->out1))
-			&& check_way(current, previous, way->out2))
-		{
-			 valid_path(e, get_room_by_name(e, way->out1), current->name, i);
-			 return (0);
-		}
-		list = list->next;
-	}
-	reset_find_room(e);
-	if (current->flag != END)
+	e->rooms = NULL;
+	e->tubes = NULL;
+	e->ants = NULL;
+	e->start = 0;
+	e->end = 0;
+	e->ant_number = 0;
+}
+
+int is_visited(t_room *next)
+{
+	if (next->find)
 		return (1);
 	return (0);
 }
-

@@ -58,11 +58,14 @@ typedef struct		s_env
 	int				ant_number;
 	int 			start;
 	int 			end;
+	int				min;
+	int				min_two;
 	t_list			*rooms;
 	t_list			*tubes;
 	t_list 			*ants;
 }					t_env;
 
+void	ft_init(t_env *e);
 int 	game_loop(t_env *e);
 int		get_next_line(int fd, char **line);
 int		ft_putstr_error(char *s);
@@ -72,21 +75,20 @@ int		is_tube(char *line);
 t_room	*stock_room(char *line, t_env *e, int flag);
 t_tube	*stock_tube(char *line);
 void 	set_algo(t_env *e);
-int 	find_way(t_env *e, t_room *current, char *previous, int i);
+int 	find_way(t_env *e, t_room *current, char *previous);
 t_room  *get_room_by_name(t_env *e, char *name);
 t_room  *get_start_room(t_env *e);
 int 	init_ants(t_env *e);
-int 	valid_path(t_env *e, t_room *current, char *previous, int i);
 int     check_way(t_room *current, char *previous, char *out);
 int 	is_visited(t_room *next);
 void 	reset_find_room(t_env *e);
 void 	destroy_all(t_env *e);
-t_room	*find_next(t_room *current, t_env *e);
-int 	search(t_room *next, t_env *e, char *previous);
 char	*cmp_tube_room(char	*room, t_tube *way);
 void	reset_visit_tube(t_env *e);
 int		check_path(t_ant *ant, char *next);
-
-
+char	*find_way_ant_two(t_tube *way, t_ant *ant, char *next_ret, t_env *e);
+int 	can_enter(char *name, t_env *e, t_ant *ant);
+char	*find_way_ant(t_env *e, t_ant *ant);
+t_path	*fill_path(char *name);
 
 #endif
