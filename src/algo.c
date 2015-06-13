@@ -77,7 +77,7 @@ int find_way(t_env *e, t_room *current, char *previous, int i)
 			if (next && ft_strcmp(next, previous) && !is_visited(get_room_by_name(e, next)))
 			{
 				way->visited = 1;
-				if ((last = (find_way(e, get_room_by_name(e, next), room->name, i))) < min && last != -1)
+				if ((last = (find_way(e, get_room_by_name(e, next), room->name, i))) <= min && last != -1)
 					min = 1 + last;
 			}
 		}
@@ -96,7 +96,7 @@ void  set_algo(t_env *e)
 
 	reset_find_room(e);
 	x = find_way(e, get_start_room(e), NULL, 0);
-	//printf("x = %d\n", x);
+	/*printf("x = %d\n", x);*/
 	if (x < 0 || x == INT_MAX)
 	{
 		ft_putstr_error("Map impossible.\n");

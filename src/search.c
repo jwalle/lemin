@@ -19,13 +19,10 @@ int 	search(t_room *next, t_env *e, char *previous)
 		next->find++;
 		if (!is_visited(get_room_by_name(e, way->out2)) && check_way(next, previous, way->out1))
 		{
-			//printf("plop out1\n");
 			return (search(get_room_by_name(e, way->out2), e, next->name) + 1);
 		}
 		if (!is_visited(get_room_by_name(e, way->out1)) && check_way(next, previous, way->out2))
 		{
-			//printf("plop out2\n");
-			//printf("room = %s\n", get_room_by_name(e, way->out1)->name);
 			 return (search(get_room_by_name(e, way->out1), e, next->name) + 1);
 		}
 		list = list->next;
@@ -63,7 +60,6 @@ t_room	*find_next(t_room *current, t_env *e)
 		way = (t_tube *)list_tubes->data;
 		if ((next = cmp_tube_room(current->name, way)))
 		{
-			//printf("path = %d\n", size);
 
 			size = search(get_room_by_name(e, next), e, current->name);
 			if (size < path_size && size != -1)

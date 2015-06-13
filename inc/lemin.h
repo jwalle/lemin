@@ -49,7 +49,7 @@ typedef struct      s_ant
 	int 			id;
 	int 			flag;
 	t_room 			*room;
-	t_path			*path;
+	t_list			*path;
 	char 			*previous;
 } 					t_ant;
 
@@ -85,6 +85,8 @@ t_room	*find_next(t_room *current, t_env *e);
 int 	search(t_room *next, t_env *e, char *previous);
 char	*cmp_tube_room(char	*room, t_tube *way);
 void	reset_visit_tube(t_env *e);
+int		check_path(t_ant *ant, char *next);
+
 
 
 #endif
