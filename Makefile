@@ -30,7 +30,7 @@ FLAGS		=	$(CFLAGS)
 CC			=	/usr/bin/gcc
 RM			=	/bin/rm -f
 
-all			:	$(NAME)
+all			: 	$(OBJ_DIR)	$(NAME)
 
 $(NAME)		:	$(OBJ)
 	@make -C ./libft
@@ -43,8 +43,11 @@ clean		:
 	@make -C ./libft clean
 	@$(RM) $(OBJ)
 
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
 fclean		:	clean
-	#@make -C ./libft fclean
+	@make -C ./libft fclean
 	@$(RM) $(NAME)
 
 re			:	fclean all

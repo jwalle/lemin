@@ -1,12 +1,22 @@
-/* ---- HEADER ---- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/06/13 16:39:59 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/13 16:40:02 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lemin.h"
 
 int game_over(t_env *e)
 {
-	t_list *list;
-	t_ant  *temp;
-	int 	i;
+	t_list	*list;
+	t_ant	*temp;
+	int		i;
 
 	i = e->ant_number;
 	list = e->ants;
@@ -26,7 +36,6 @@ int check_path(t_ant *ant, char *next)
 	t_path	*path;
 
 	list = ant->path;
-
 	while (list)
 	{
 		path = (t_path*)list->data;
@@ -51,54 +60,55 @@ int can_enter(char *name, t_env *e, t_ant *ant)
 	return (1);
 }
 
-int move(t_ant *ant, t_env *e)
+int move(t_ant *ant, t_env *e, int n)
 {
 	char	*new_room;
 	t_room	*temp;
+	t_list	*list;
 
- 	new_room = NULL;
+	new_room = NULL;
 	if ((new_room = find_way_ant(e, ant)) != NULL)
 	{
-		ant->path = ft_lst_push(ant->path, fill_path(ant->room->name));
+		list = ant->path;
+		ant->path = ft_lst_push(list, fill_path(ant->room->name));
 		ant->room->full--;
 		ant->previous = ant->room->name;
 		temp = get_room_by_name(e, new_room);
 		ant->room = temp;
 		ant->flag = temp->flag;
 		temp->full++;
+		if (n)
+			ft_putchar(' ');
 		ft_putchar('L');
 		ft_putnbr(ant->id);
 		ft_putstr("-");
 		ft_putstr(new_room);
-		ft_putchar(' ');
+		free(new_room);
 		return (1);
 	}
 	return (0);
 }
 
-int game_loop(t_env *e)
+int	game_loop(t_env *e)
 {
-	t_list *list;
-	t_ant 	*temp;
-	int i;
+	t_list	*list;
+	t_ant	*temp;
+	int		n;
 
-	i = 0;
-	while(game_over(e))
+	while (game_over(e))
 	{
 		list = e->ants;
+		n = 0;
 		while (list)
 		{
 			temp = (t_ant*)list->data;
 			if (temp->flag != END)
-				move(temp, e);
+				n += move(temp, e, n);
 			list = list->next;
 		}
-		i++;
 		ft_putchar('\n');
+		if (n == 0)
+			ft_putstr_error("Map error, no more move.\n");
 	}
-	ft_putstr("TURN = ");
-	ft_putnbr(i);
-	ft_putchar('\n');
 	return (1);
 }
-

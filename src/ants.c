@@ -1,8 +1,18 @@
-/* ---- HEADER ----- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ants.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/06/13 16:39:42 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/13 16:39:48 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lemin.h"
 
-t_ant 	*stock_ant(t_env *e, int id)
+t_ant	*stock_ant(t_env *e, int id)
 {
 	t_ant *new;
 
@@ -18,8 +28,8 @@ t_ant 	*stock_ant(t_env *e, int id)
 
 int		init_ants(t_env *e)
 {
-	int i;
-	t_room *temp;
+	int		i;
+	t_room	*temp;
 
 	i = 1;
 	while (i <= e->ant_number)
@@ -38,30 +48,31 @@ char	*find_way_ant_two(t_tube *way, t_ant *ant, char *next_ret, t_env *e)
 	int		last;
 
 	next = NULL;
+	last = 0;
 	if (!way->visited)
 	{
 		next = cmp_tube_room(ant->room->name, way);
 		if (next && can_enter(next, e, ant)
 			&& ft_strcmp(next, ant->previous))
 		{
-			if ((last = (find_way(e, get_room_by_name(e, next), ant->room->name)))
+			if ((last =
+				(find_way(e, get_room_by_name(e, next), ant->room->name)))
 				< e->min && last > -1)
 			{
 				way->visited = 1;
 				e->min = 1 + last;
-				next_ret = next;
+				next_ret = ft_strdup(next);
 			}
-		}	
+		}
 	}
 	return (next_ret);
 }
 
-char *find_way_ant(t_env *e, t_ant *ant)
+char	*find_way_ant(t_env *e, t_ant *ant)
 {
 	t_list	*list;
 	t_tube	*way;
 	char	*next_ret;
-
 
 	e->min = INT_MAX;
 	list = e->tubes;
@@ -71,7 +82,7 @@ char *find_way_ant(t_env *e, t_ant *ant)
 		way = (t_tube*)list->data;
 		next_ret = find_way_ant_two(way, ant, next_ret, e);
 		reset_visit_tube(e);
-		list = list->next;	
+		list = list->next;
 	}
 	return (next_ret);
 }
@@ -82,6 +93,6 @@ t_path	*fill_path(char *name)
 
 	if (!(new = malloc(sizeof(t_path))))
 		return (NULL);
-		new->name = ft_strdup(name);
+	new->name = ft_strdup(name);
 	return (new);
 }

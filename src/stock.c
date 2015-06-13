@@ -6,20 +6,18 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 17:22:31 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 20:16:52 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/13 16:40:25 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-/*attention double espace, etc...*/
 
 int		is_comment(char *line)
 {
 	if (line[0] == '#' && line[1] && line[1] != '#')
 		return (1);
 	return (0);
-}	
+}
 
 int		is_room(char *line)
 {
@@ -61,10 +59,10 @@ int		is_tube(char *line)
 	return (0);
 }
 
-t_room 	*stock_room(char *line,t_env *e, int flag)
+t_room	*stock_room(char *line, t_env *e, int flag)
 {
-	t_room *new;
-	int i;
+	t_room	*new;
+	int		i;
 
 	i = 0;
 	(void)e;
@@ -89,8 +87,8 @@ t_room 	*stock_room(char *line,t_env *e, int flag)
 
 t_tube	*stock_tube(char *line)
 {
-	t_tube *new;
-	int i;
+	t_tube	*new;
+	int		i;
 
 	i = 0;
 	if (!(new = malloc(sizeof(t_tube))))

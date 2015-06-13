@@ -6,7 +6,7 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/16 17:44:58 by jwalle            #+#    #+#             */
-/*   Updated: 2015/05/28 17:23:51 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/13 16:40:06 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int		ft_set_zero(t_static *toto)
 	{
 		toto->cpy = 0;
 		toto->size = 0;
-		if (toto->buf[0] != 0)
-			free(toto->buf);
 		return (0);
 	}
 	return (1);

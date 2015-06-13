@@ -1,13 +1,28 @@
-/* ---- HEADER ---- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   destroy.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/06/13 16:39:53 by jwalle            #+#    #+#             */
+/*   Updated: 2015/06/13 16:39:56 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lemin.h"
 
+void destroy_path(void *data)
+{
+	t_path	*path;
+
+	path = (t_path*)data;
+	ft_strdel(&path->name);
+	free(data);
+}
+
 void destroy_ant(void *data)
 {
-/*	t_ant *ant;
-
-	ant = (t_ant*)data;
-*/
 	free(data);
 	data = NULL;
 }

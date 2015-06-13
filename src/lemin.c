@@ -6,16 +6,16 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 14:41:15 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 20:12:53 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/13 16:40:09 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int 	get_ant_number(t_env *e)
+int		get_ant_number(t_env *e)
 {
-	int ret;
-	char *line;
+	int		ret;
+	char	*line;
 
 	while ((ret = (get_next_line(0, &line)) > 0))
 	{
@@ -27,6 +27,9 @@ int 	get_ant_number(t_env *e)
 					return (0);
 			}
 			e->ant_number = ft_atoi(line);
+			free(line);
+			if (e->ant_number < 1)
+				ft_putstr_error("Error, Wrong ant number.\n");
 			return (1);
 		}
 	}
@@ -50,7 +53,7 @@ int		get_map(t_env *e)
 	return (0);
 }
 
-void print_room_name(char *name, int x, int y, int flag)
+void	print_room_name(char *name, int x, int y, int flag)
 {
 	if (flag == START)
 		ft_putstr("##start\n");
@@ -64,11 +67,11 @@ void print_room_name(char *name, int x, int y, int flag)
 	ft_putchar('\n');
 }
 
-void print_stuff(t_env *e)
+void	print_stuff(t_env *e)
 {
-	t_list 	*list;
-	t_room  *temp;
-	t_tube  *tump;
+	t_list	*list;
+	t_room	*temp;
+	t_tube	*tump;
 
 	list = e->rooms;
 	ft_putnbr(e->ant_number);
@@ -91,12 +94,10 @@ void print_stuff(t_env *e)
 	ft_putchar('\n');
 }
 
-
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_env *e;
 
-	
 	(void)ac;
 	(void)av;
 	e = (t_env*)malloc(sizeof(t_env));

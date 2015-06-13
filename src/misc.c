@@ -6,19 +6,20 @@
 /*   By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/01 16:37:48 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/01 16:38:19 by jwalle           ###   ########.fr       */
+/*   Updated: 2015/06/13 16:40:11 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
-int			ft_putstr_error(char *s)
+int		ft_putstr_error(char *s)
 {
 	ft_putstr(s);
 	exit(0);
 	return (0);
 }
 
-void reset_find_room(t_env *e)
+void	reset_find_room(t_env *e)
 {
 	t_list *list;
 	t_room *temp;
@@ -32,7 +33,7 @@ void reset_find_room(t_env *e)
 	}
 }
 
-void reset_visit_tube(t_env *e)
+void	reset_visit_tube(t_env *e)
 {
 	t_list *list;
 	t_tube *temp;
@@ -53,10 +54,12 @@ void	ft_init(t_env *e)
 	e->ants = NULL;
 	e->start = 0;
 	e->end = 0;
+	e->min = 0;
+	e->min_two = 0;
 	e->ant_number = 0;
 }
 
-int is_visited(t_room *next)
+int		is_visited(t_room *next)
 {
 	if (next->find)
 		return (1);
